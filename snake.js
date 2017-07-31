@@ -20,7 +20,8 @@ var startSnake = {
     frameCount: 0,
     maxLength: 1
 };
-var snake = startSnake;
+// make a "copy" of the object so that changes to one do not effect the other
+var snake = JSON.parse(JSON.stringify(startSnake));
 
 var foodRequired = true;
 var foodPosition = {x: undefined, y: undefined}
@@ -88,14 +89,14 @@ function moveSnake() {
 
         // end the game if front of snake hits wall, or any of its own segments!
         if (front.xPos>widthInBlocks || front.yPos>heightInBlocks || front.xPos<0 || front.yPos<0) {
-            quit;
+            quit();
             alert("You hit the wall, sucker! Better luck next time.");
         }
         snake.segments.forEach(function(segment, index) {
             // obviously don't penalise the player for the front of the snake hitting itself!
             if (front != segment && front.xPos == segment.xPos && front.yPos == segment.yPos) {
                 quit();
-                alert("Your snake got too slow, or maybe too fat. Either way, it hit itself! Better luck next time.");
+                alert("Your snake got too fat - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
             }
         });
         snake.frameCount = 0;
@@ -139,6 +140,8 @@ function startGame() {
 function quit() {
     running = false;
     snake = startSnake;
+    foodRequired = true;
+    foodPosition = {x: undefined, y: undefined}
 }
 
 
