@@ -3,7 +3,7 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var blockSize = 20; // no. of pixels per square "block". A number of such blocks will make up the play area.
 var widthInBlocks = 50;
-var heightInBlocks = 30;
+var heightInBlocks = 25;
 
 // a dictionary of values to translate directions to x, y co-ordinate values:
 var directions = {
@@ -28,9 +28,11 @@ var foodPosition = {x: undefined, y: undefined}
 
 var keys = [];
 document.body.addEventListener("keydown", function(e) {
+    event.preventDefault();
 	keys[e.keyCode] = true;
 });
 document.body.addEventListener("keyup", function(e) {
+    event.preventDefault();
 	keys[e.keyCode] = false;
 });
 
@@ -77,7 +79,7 @@ function moveSnake() {
         if (front.xPos==foodPosition.x && front.yPos==foodPosition.y) {
             foodRequired = true;
             snake.maxLength++;
-            snake.framesPerMove = Math.min(Math.ceil(40/snake.maxLength), 6);
+            snake.framesPerMove = Math.max(Math.min(Math.ceil(70/snake.maxLength), 6), 2);
         }
 
         // remove block at back if snake is at max length
@@ -86,7 +88,7 @@ function moveSnake() {
         }
 
         // end the game if front of snake hits wall, or any of its own segments!
-        if (front.xPos>widthInBlocks || front.yPos>heightInBlocks || front.xPos<0 || front.yPos<0) {
+        if (front.xPos>=widthInBlocks || front.yPos>=heightInBlocks || front.xPos<0 || front.yPos<0) {
             quit();
             alert("You hit the wall, sucker! Better luck next time.");
         }
@@ -100,7 +102,10 @@ function moveSnake() {
         }
         snake.frameCount = 0;
     }
-    // move proportionally towards the next destination (for smoother animation)
+    /* move proportionally towards the next destination (for smoother animation)
+    in practice this seems to make silly things happen (the snake is far too fast and never actually picks
+    up the food, even when I change that check from strict equality to "be within 0.5") - so it is commented
+    out, perhaps never to return! */
     /*snake.segments.forEach(function(segment, index){
         var nextSegment = index==snake.segments.length-1 ? {xPos: segment.xPos + directions[snake.direction].x, 
                                                         yPos: segment.yPos + directions[snake.direction].y} 
@@ -155,14 +160,16 @@ function quit() {
 
 function gameLoop() {
     if (running) {
-        clearCanvas();
+        if (snake.frameCount >= snake.framesPerMove || foodRequired) {
+            clearCanvas(); // only update screen when needed, in a mostly futile attempt to stop "flickering"
+        }  // when speen is low
         food();
         drawSnake();
         moveSnake();
         if (running) { /* despite appearances, this conditional is not pointless. It ensures that the score is
-            not reset to0 until the player restarts the game - so that the previous score can still be seen */
+            not reset to 0 until the player restarts the game - so that the previous score can still be seen */
             score();
+            requestAnimationFrame(gameLoop);
         }
-        requestAnimationFrame(gameLoop);
     }
 }
