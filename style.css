@@ -1,0 +1,22 @@
+body {
+    margin: 0 auto;
+    float: none;
+}
+
+#canvas {
+    margin: 30px 100px;
+    border: 10px solid black;
+    background-color: #aaa;
+}
+
+#controls {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#controls p, #start, #stop {
+    display: inline-block;
+    margin: 0 50px;
+}
