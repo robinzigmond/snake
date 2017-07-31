@@ -16,7 +16,7 @@ var directions = {
 var startSnake = {
     segments: [{xPos: Math.floor(widthInBlocks/2), yPos: Math.floor(heightInBlocks/2)}],
     direction: "East",
-    framesPerMove: 20,
+    framesPerMove: 6,
     frameCount: 0,
     maxLength: 1
 };
@@ -71,15 +71,13 @@ function moveSnake() {
             yPos: front.yPos + directions[snake.direction].y
         }
         snake.segments.push(newSegment);
-
+        
         // increase maxLength (and, indirectly, the score!) if the snake got to the food
         var front = snake.segments[snake.segments.length-1];
         if (front.xPos==foodPosition.x && front.yPos==foodPosition.y) {
             foodRequired = true;
             snake.maxLength++;
-            if (snake.framesPerMove > 0) {
-                snake.framesPerMove = Math.min(Math.ceil(30/snake.maxLength), 10);
-            }
+            snake.framesPerMove = Math.min(Math.ceil(40/snake.maxLength), 6);
         }
 
         // remove block at back if snake is at max length
@@ -92,15 +90,25 @@ function moveSnake() {
             quit();
             alert("You hit the wall, sucker! Better luck next time.");
         }
-        snake.segments.forEach(function(segment, index) {
-            // obviously don't penalise the player for the front of the snake hitting itself!
-            if (front != segment && front.xPos == segment.xPos && front.yPos == segment.yPos) {
-                quit();
-                alert("Your snake got too fat - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
-            }
-        });
+        else {snake.segments.forEach(function(segment, index) {
+                // obviously don't penalise the player for the front of the snake hitting itself!
+                if (front != segment && front.xPos == segment.xPos && front.yPos == segment.yPos) {
+                    quit();
+                    alert("Your snake got too fat - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
+                }
+            });
+        }
         snake.frameCount = 0;
     }
+    // move proportionally towards the next destination (for smoother animation)
+    /*snake.segments.forEach(function(segment, index){
+        var nextSegment = index==snake.segments.length-1 ? {xPos: segment.xPos + directions[snake.direction].x, 
+                                                        yPos: segment.yPos + directions[snake.direction].y} 
+                                                        : snake.segments[index+1];
+        segment.xPos += snake.frameCount * (nextSegment.xPos-segment.xPos) / snake.framesPerMove;
+        segment.yPos += snake.frameCount * (nextSegment.yPos-segment.yPos) / snake.framesPerMove;
+    });*/
+
     snake.frameCount++
 }
 
