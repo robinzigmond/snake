@@ -78,7 +78,7 @@ function moveSnake() {
             foodRequired = true;
             snake.maxLength++;
             if (snake.framesPerMove > 0) {
-                snake.framesPerMove --;
+                snake.framesPerMove = Math.min(Math.ceil(30/snake.maxLength), 10);
             }
         }
 
@@ -139,7 +139,7 @@ function startGame() {
 
 function quit() {
     running = false;
-    snake = startSnake;
+    snake = JSON.parse(JSON.stringify(startSnake));
     foodRequired = true;
     foodPosition = {x: undefined, y: undefined}
 }
@@ -151,7 +151,10 @@ function gameLoop() {
         food();
         drawSnake();
         moveSnake();
-        score();
+        if (running) { /* despite appearances, this conditional is not pointless. It ensures that the score is
+            not reset to0 until the player restarts the game - so that the previous score can still be seen */
+            score();
+        }
         requestAnimationFrame(gameLoop);
     }
 }
