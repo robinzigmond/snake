@@ -16,7 +16,7 @@ var directions = {
 var startSnake = {
     segments: [{xPos: Math.floor(widthInBlocks/2), yPos: Math.floor(heightInBlocks/2)}],
     direction: "East",
-    framesPerMove: 6,
+    framesPerMove: 9,
     frameCount: 0,
     maxLength: 1
 };
@@ -24,7 +24,7 @@ var startSnake = {
 var snake = JSON.parse(JSON.stringify(startSnake));
 
 var foodRequired = true;
-var foodPosition = {x: undefined, y: undefined}
+var foodPosition = {x: undefined, y: undefined};
 
 var keys = [];
 document.body.addEventListener("keydown", function(e) {
@@ -52,16 +52,17 @@ function drawSnake() {
 
 
 function moveSnake() {
-    if (keys[37]) {
+    // ensure the player isn't allowed to go directly back on him/herself
+    if (keys[37] && snake.direction != "East") {
         snake.direction = "West";
     }
-    if (keys[38]) {
+    if (keys[38] && snake.direction != "South") {
         snake.direction = "North";
     }
-    if (keys[39]) {
+    if (keys[39] && snake.direction != "West") {
         snake.direction = "East";
     }
-    if (keys[40]) {
+    if (keys[40] && snake.direction != "North") {
         snake.direction = "South";
     }
 
@@ -79,7 +80,7 @@ function moveSnake() {
         if (front.xPos==foodPosition.x && front.yPos==foodPosition.y) {
             foodRequired = true;
             snake.maxLength++;
-            snake.framesPerMove = Math.max(Math.min(Math.ceil(70/snake.maxLength), 6), 2);
+            snake.framesPerMove = Math.max(9 - snake.maxLength/10, 2);
         }
 
         // remove block at back if snake is at max length
@@ -90,13 +91,13 @@ function moveSnake() {
         // end the game if front of snake hits wall, or any of its own segments!
         if (front.xPos>=widthInBlocks || front.yPos>=heightInBlocks || front.xPos<0 || front.yPos<0) {
             quit();
-            alert("You hit the wall, sucker! Better luck next time.");
+            alert("Oop, you hit the wall! Better luck next time.");
         }
         else {snake.segments.forEach(function(segment, index) {
                 // obviously don't penalise the player for the front of the snake hitting itself!
                 if (front != segment && front.xPos == segment.xPos && front.yPos == segment.yPos) {
                     quit();
-                    alert("Your snake got too fat - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
+                    alert("Your snake got too long - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
                 }
             });
         }
@@ -123,6 +124,8 @@ function food() {
         var positionOK = true;
         newFoodXPos = Math.floor(widthInBlocks*Math.random());
         newFoodYPos = Math.floor(heightInBlocks*Math.random());
+        
+        // new food block can't be anywhere on current snake, because that would be silly
         snake.segments.forEach(function(segment) {
             if (newFoodXPos==segment.xPos && newFoodYPos==segment.yPos) {
                 positionOK = false;
@@ -146,13 +149,18 @@ function score() {
 
 function startGame() {
     running = true;
+    snake = JSON.parse(JSON.stringify(startSnake));
+    // make sure all keys count as not pressed - this can matter when restarting the game
+    keys[37] = false;
+    keys[38] = false;
+    keys[39] = false;
+    keys[40] = false;
     gameLoop();
 }
 
 
 function quit() {
     running = false;
-    snake = JSON.parse(JSON.stringify(startSnake));
     foodRequired = true;
     foodPosition = {x: undefined, y: undefined}
 }
@@ -162,10 +170,10 @@ function gameLoop() {
     if (running) {
         if (snake.frameCount >= snake.framesPerMove || foodRequired) {
             clearCanvas(); // only update screen when needed, in a mostly futile attempt to stop "flickering"
-        }  // when speen is low
+        }  // when speed is low
         food();
-        drawSnake();
         moveSnake();
+        drawSnake();
         if (running) { /* despite appearances, this conditional is not pointless. It ensures that the score is
             not reset to 0 until the player restarts the game - so that the previous score can still be seen */
             score();
