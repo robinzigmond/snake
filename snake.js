@@ -91,7 +91,7 @@ function moveSnake() {
         // end the game if front of snake hits wall, or any of its own segments!
         if (front.xPos>=widthInBlocks || front.yPos>=heightInBlocks || front.xPos<0 || front.yPos<0) {
             quit();
-            alert("Oop, you hit the wall! Better luck next time.");
+            alert("Oops, you hit the wall! Better luck next time.");
         }
         else {snake.segments.forEach(function(segment, index) {
                 // obviously don't penalise the player for the front of the snake hitting itself!
