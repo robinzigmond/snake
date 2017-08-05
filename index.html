@@ -15,10 +15,10 @@
             <h4 class="header-text">Very basic snake game, coded by 
                 <a href="https://github.com/robinzigmond/" target="_blank">Robin Zigmond</a> using just Javascript.</h4></div>
     </div>
-    <div class="col-md-7 col-xs-offset-1">
+    <div class="col-md-6 col-xs-offset-1">
         <canvas id="canvas" width="1000" height="500"></canvas>
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-offset-2 col-md-2">
             <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
@@ -28,39 +28,44 @@
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            Marcus Doe
+                            <p>Marcus Doe</p>
                         </div>
                         <div class="profile-usertitle-job">
-                                <p>Score: <strong id="score">0</strong></p>
+                                <h3>Score: <span id="score">0</span></h3>
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                        <button id="start" class="btn btn-success" onclick="startGame()">Start game!</button>
-                        <button id="stop" class="btn btn-danger" onclick="quit()">Quit</button>
+                        <button id="start" class="btn btn-success btn-lg" onclick="startGame()">Start game!</button>
+                        <button id="stop" class="btn btn-warning btn-lg" onclick="quit()">Quit</button>
                     </div>
                 </div>
-                <div class="row">
-                        <ul class="table table-responsive">
-                            <li class="collection-header text-center">
-                                <span class="controller">Controller</span>
-                            </li>
-                            <li class="collection-item">
-                                <div>A<a href="#!" class="secondary-content"><i class="fa fa-arrow-left"></i></a></div>
-                            </li>
-                            <li class="collection-item">
-                                <div>D<a href="#!" class="secondary-content"><i class="fa fa-arrow-right"></i></a></div>
-                            </li>
-                            <li class="collection-item">
-                                <div>S<a href="#!" class="secondary-content"><i class="fa fa-arrow-down"></i></a></div>
-                            </li>
-                        </ul>
-                    </div>
-        
-        
-    </div>
-    </div>
+                <div class="panel panel-info">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading text-center"><strong>Controller</strong></div>
+                        <div class="panel-body">
+                        </div>
+                        <table class="table table-responsive">
+                          <tr>
+                              <td><strong>LEFT</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-left fa-2x"></i></td>
+                          </tr>
+                          <tr>
+                              <td><strong>RIGHT</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-right fa-2x"></i></td>
+                          </tr>
+                          <tr>
+                              <td><strong>DOWN</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-down fa-2x"></i></td>
+                          </tr>
+                          <tr>
+                              <td><strong>UP</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-up fa-2x"></i></td>
+                          </tr>
+                        </table>
+                      </div>
+</div>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootbox.min.js"></script>
