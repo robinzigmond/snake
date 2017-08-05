@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Snake</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12"><h1 class="header-text">Web snake</h1>
+            <h4 class="header-text">Very basic snake game, coded by 
+                <a href="https://github.com/robinzigmond/" target="_blank">Robin Zigmond</a> using just Javascript.</h4></div>
+    </div>
+    <div class="col-md-8">
+        <canvas id="canvas" width="1000" height="500"></canvas>
+    </div>
+    <div class="col-md-4">
+        <div id="controls">
+        <p>Use arrow keys to change snake's direction</p>
+        <button id="start" class="btn btn-success" onclick="startGame()">Start game!</button>
+        <button id="stop" class="btn btn-danger" onclick="quit()">Quit</button>
+        <p>Score: <strong id="score">0</strong></p>
+    </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/snake.js"></script>
+</body>
+</html>

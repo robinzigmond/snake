@@ -1,0 +1,9 @@
+#canvas {
+    margin: 30px 100px;
+    border: 10px solid black;
+    background-color: #aaa;
+}
+
+.header-text {
+    text-align: center;
+}
