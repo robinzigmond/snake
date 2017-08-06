@@ -11,7 +11,7 @@ var directions = {
     East: {x: 1, y: 0},
     South: {x: 0, y: +1},
     West: {x: -1, y: 0}
-}
+};
 
 var startSnake = {
     segments: [{xPos: Math.floor(widthInBlocks/2), yPos: Math.floor(heightInBlocks/2)}],
@@ -72,7 +72,7 @@ function moveSnake() {
         var newSegment = {
             xPos: front.xPos + directions[snake.direction].x,
             yPos: front.yPos + directions[snake.direction].y
-        }
+        };
         snake.segments.push(newSegment);
         
         // increase maxLength (and, indirectly, the score!) if the snake got to the food
@@ -115,7 +115,7 @@ function moveSnake() {
         segment.yPos += snake.frameCount * (nextSegment.yPos-segment.yPos) / snake.framesPerMove;
     });*/
 
-    snake.frameCount++
+    snake.frameCount++;
 }
 
 
@@ -162,7 +162,7 @@ function startGame() {
 function quit() {
     running = false;
     foodRequired = true;
-    foodPosition = {x: undefined, y: undefined}
+    foodPosition = {x: undefined, y: undefined};
 }
 
 
