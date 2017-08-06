@@ -1,12 +1,12 @@
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyC2CmphUd-aPE4Bpso2spOnSY8TxHaaS_Q",
-    authDomain: "snake-game-df93e.firebaseapp.com",
-    databaseURL: "https://snake-game-df93e.firebaseio.com",
-    projectId: "snake-game-df93e",
+    apiKey: key,
+    authDomain: domain,
+    databaseURL: databaseURL,
+    projectId: project,
     storageBucket: "",
-    messagingSenderId: "546734805172"
+    messagingSenderId: messengerId
   };
   firebase.initializeApp(config);
 
-  console.log(firebase);
+  var database = firebase.database();
