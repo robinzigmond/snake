@@ -10,9 +10,11 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
+  var ref = database.ref('scores');
   var user;
   var displayName;
   var photoURL;
+  var uid;
 
 
 
@@ -56,7 +58,7 @@
             var emailVerified = user.emailVerified;
             photoURL = user.photoURL;
             var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
+            uid = user.uid;
             var providerData = user.providerData;
             var token = firebase.auth().currentUser.uid;
             $("#profile").removeClass("hide");
@@ -72,7 +74,8 @@
 
   function signOut(){
   firebase.auth().signOut().then(function() {
-    bootbox.alert("You have signed out as " + displayName)
+    bootbox.alert("You have signed out as " + displayName);
   }).catch(function(error) {
     console.log(error);
   });
+}
