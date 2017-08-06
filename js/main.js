@@ -10,14 +10,8 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
-
-  var ref = database.ref('scores');
   var user;
 
-  var data = {
-      name: "DTS",
-      score: 10
-  };
 
   var provider = new firebase.auth.GoogleAuthProvider();
   
@@ -45,6 +39,8 @@
 
   function showProfile(){
     $("#login").hide();
-    $("#profile").show();
-    $("#playername").html(user.displayName)
+    $("#logout").removeClass("hide");
+    $("#profile").removeClass("hide");
+    $("#playername").replaceWith(user.displayName);
+    $("#photo").attr("src", user.photoURL);
   }

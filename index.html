@@ -20,18 +20,18 @@
     </div>
     <div class="col-md-6 col-xs-offset-1">
         <canvas id="canvas" width="1000" height="500"></canvas>
+        <button id="login" class="btn btn-warning btn-lg text-center" onclick="signIn();"><i class="fa fa-google-plus"></i>  Sign In to Play</button>
     </div>
     <div class="col-xs-offset-2 col-md-2">
-            <div class="profile-sidebar" id="profile">
+            <div class="profile-sidebar hide" id="profile">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="img/player.png" class="img-responsive" alt="">
+                        <img src="img/player.png" class="img-responsive" alt="" id="photo">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            <p id="welcome"></p>
                             <p id="playername">Marcus Doe</p>
                         </div>
                         <div class="profile-usertitle-job">
@@ -41,13 +41,12 @@
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                        <button id="start" class="btn btn-success btn-lg" onclick="startGame();"><i class="fa fa-gamepad"></i> Start game!</button>
-                        <button id="stop" class="btn btn-warning btn-lg" onclick="quit();">Quit</button>
+                        <button id="start" class="btn btn-success btn" onclick="startGame();"><i class="fa fa-gamepad"></i> Start game!</button>
+                        <button id="stop" class="btn btn-warning btn" onclick="quit();">Quit</button>
+                        <button id="logout" class="btn btn-info hide" onclick="signOut();"><i class="fa fa-sign-out"></i> Log Out</button>
                         
                     </div>
                 </div>
-                <button id="login" class="btn btn-warning btn-lg text-center" onclick="signIn();"><i class="fa fa-google-plus"></i>  Sign In to Play</button>
-                <button id="logout" class="btn btn-warning btn-lg hide" onclick="signIn();"><i class="fa fa-google-plus"></i> Log Out</button>
                 <div class="panel panel-info">
                         <!-- Default panel contents -->
                         <div class="panel-heading text-center"><strong>Controller</strong></div>

@@ -91,13 +91,13 @@ function moveSnake() {
         // end the game if front of snake hits wall, or any of its own segments!
         if (front.xPos>=widthInBlocks || front.yPos>=heightInBlocks || front.xPos<0 || front.yPos<0) {
             quit();
-            alert("Oops, you hit the wall! Better luck next time.");
+            bootbox.alert("Oops, you hit the wall! Better luck next time.");
         }
         else {snake.segments.forEach(function(segment, index) {
                 // obviously don't penalise the player for the front of the snake hitting itself!
                 if (front != segment && front.xPos == segment.xPos && front.yPos == segment.yPos) {
                     quit();
-                    alert("Your snake got too long - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
+                    bootbox.alert("Your snake got too long - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
                 }
             });
         }
@@ -144,6 +144,7 @@ function food() {
 
 function score() {
     document.getElementById("score").innerText = snake.maxLength - 1;
+    
 }
 
 
@@ -163,6 +164,7 @@ function quit() {
     running = false;
     foodRequired = true;
     foodPosition = {x: undefined, y: undefined};
+    writeUserData();
 }
 
 
