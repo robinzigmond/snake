@@ -190,5 +190,12 @@ function gameLoop() {
 }
 
 function highscore(score) {
-    writeUserData(score);
+firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            if(score > )
+            var score = snake.maxLength -1
+            writeUserData(score);
+        } 
+      });
+   
 }

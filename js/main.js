@@ -83,10 +83,11 @@
   });
 }
 function writeUserData(score) {
+  debugger;
   firebase.database().ref('snake/scores' + uid).set({
     username: displayName,
     userId: uid,
-    score: localStorage.getItem('highscore')
+    scores: score
   });
   localStorage.highscore = snake.maxLength -1;
 }
