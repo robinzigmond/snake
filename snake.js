@@ -144,7 +144,6 @@ function food() {
 
 function score() {
     document.getElementById("score").innerText = snake.maxLength - 1;
-    
 }
 
 
@@ -161,10 +160,10 @@ function startGame() {
 
 
 function quit() {
+    console.log("Button Pressed")
     running = false;
     foodRequired = true;
     foodPosition = {x: undefined, y: undefined};
-    writeUserData();
 }
 
 

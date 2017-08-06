@@ -10,11 +10,15 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
+  var ref = database.ref('scores');
   var user;
   var displayName;
   var photoURL;
+  var uid;
 
-
+var data = {
+    name: displayName
+};
 
   var provider = new firebase.auth.GoogleAuthProvider();
   
@@ -41,11 +45,12 @@
   }
 
   function showProfile(){
-    $("#login").hide();
-    $("#logout").removeClass("hide");
-    $("#profile").removeClass("hide");
     $("#playername").replaceWith(user.displayName);
     $("#photo").attr("src", user.photoURL);
+    $("#login").hide();
+    $("#logout").removeClass("hide");
+    $("#highscoreText").addClass("hide");
+    $("#highscore").addClass("hide");
   }
 
   $(document).ready(function(){
@@ -56,22 +61,27 @@
             var emailVerified = user.emailVerified;
             photoURL = user.photoURL;
             var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
+            uid = user.uid;
             var providerData = user.providerData;
-            $("#profile").removeClass("hide");
+            var token = firebase.auth().currentUser.uid;
             $("#playername").replaceWith(user.displayName);
             $("#photo").attr("src", user.photoURL);
-            $("#login").hide();
+            $("#login").remove();
             $("#logout").removeClass("hide");
-        } else {
-          console.log('not logged in');
+            $("#highscoreText").removeClass("hide");
+            $("#highscore").removeClass("hide");
+        } else {            
+            $("#login").show();
+            $("#logout").addClass("hide");
+            $("#highscoreText").addClass("hide");
+            $("#highscore").addClass("hide");
         }
       });
   });
 
   function signOut(){
   firebase.auth().signOut().then(function() {
-    bootbox.alert("You have signed out as " + displayName)
+    bootbox.alert("You have signed out as " + displayName);
   }).catch(function(error) {
     console.log(error);
   });
