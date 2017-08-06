@@ -58,6 +58,7 @@
             var isAnonymous = user.isAnonymous;
             var uid = user.uid;
             var providerData = user.providerData;
+            var token = firebase.auth().currentUser.uid;
             $("#profile").removeClass("hide");
             $("#playername").replaceWith(user.displayName);
             $("#photo").attr("src", user.photoURL);
@@ -75,4 +76,3 @@
   }).catch(function(error) {
     console.log(error);
   });
-}
