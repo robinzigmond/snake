@@ -49,8 +49,8 @@ var data = {
     $("#photo").attr("src", user.photoURL);
     $("#login").hide();
     $("#logout").removeClass("hide");
-    $("#higscoreText").remove();
-    $("#highscore").remove();
+    $("#highscoreText").addClass("hide");
+    $("#highscore").addClass("hide");
   }
 
   $(document).ready(function(){
@@ -68,13 +68,13 @@ var data = {
             $("#photo").attr("src", user.photoURL);
             $("#login").remove();
             $("#logout").removeClass("hide");
-            $("#higscoreText").show();
-            $("#highscore").show();
+            $("#highscoreText").removeClass("hide");
+            $("#highscore").removeClass("hide");
         } else {            
             $("#login").show();
             $("#logout").addClass("hide");
-            $("#higscoreText").remove();
-            $("#highscore").remove();
+            $("#highscoreText").addClass("hide");
+            $("#highscore").addClass("hide");
         }
       });
   });
