@@ -181,3 +181,7 @@ function gameLoop() {
         }
     }
 }
+
+function highscore(score) {
+    writeUserData(score);
+}

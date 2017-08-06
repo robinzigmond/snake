@@ -66,7 +66,6 @@
             $("#logout").removeClass("hide");
             $("#highscoreText").removeClass("hide");
             $("#highscore").removeClass("hide");
-            setHighscore();
         } else {            
             $("#login").show();
             $("#logout").addClass("hide");
