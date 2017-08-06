@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
     <head>
         <meta charset="UTF-8">
@@ -18,4 +19,79 @@
         </div>
         <script src="snake.js"></script>
     </body>
+=======
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/main.js"></script>
+    <title>Snake</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12"><h1 class="header-text">Web snake</h1>
+            <h4 class="header-text">Very basic snake game, coded by 
+                <a href="https://github.com/robinzigmond/" target="_blank">Robin Zigmond</a> using just Javascript.</h4></div>
+    </div>
+    <div class="col-md-6 col-xs-offset-1">
+        <canvas id="canvas" width="1000" height="500"></canvas>
+    </div>
+    <div class="col-xs-offset-2 col-md-2">
+            <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="img/player.png" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            <p>Marcus Doe</p>
+                        </div>
+                        <div class="profile-usertitle-job">
+                                <h3>Score: <span id="score">0</span></h3>
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <button id="start" class="btn btn-success btn-lg" onclick="startGame()">Start game!</button>
+                        <button id="stop" class="btn btn-warning btn-lg" onclick="quit()">Quit</button>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading text-center"><strong>Controller</strong></div>
+                        <div class="panel-body">
+                        </div>
+                        <table class="table table-responsive">
+                          <tr>
+                              <td><strong>LEFT</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-left fa-2x"></i></td>
+                          </tr>
+                          <tr>
+                              <td><strong>RIGHT</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-right fa-2x"></i></td>
+                          </tr>
+                          <tr>
+                              <td><strong>DOWN</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-down fa-2x"></i></td>
+                          </tr>
+                          <tr>
+                              <td><strong>UP</strong></td>
+                              <td><i class="fa fa-arrow-circle-o-up fa-2x"></i></td>
+                          </tr>
+                        </table>
+                      </div>
+</div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/snake.js"></script>
+</body>
+>>>>>>> Themed
 </html>
