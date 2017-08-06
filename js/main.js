@@ -11,6 +11,9 @@
 
   var database = firebase.database();
   var user;
+  var displayName;
+  var photoURL;
+
 
 
   var provider = new firebase.auth.GoogleAuthProvider();
@@ -44,3 +47,32 @@
     $("#playername").replaceWith(user.displayName);
     $("#photo").attr("src", user.photoURL);
   }
+
+  $(document).ready(function(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            $("#profile").removeClass("hide");
+            $("#playername").replaceWith(user.displayName);
+            $("#photo").attr("src", user.photoURL);
+            $("#login").hide();
+            $("#logout").removeClass("hide");
+        } else {
+          console.log('not logged in');
+        }
+      });
+  });
+
+  function signOut(){
+  firebase.auth().signOut().then(function() {
+    bootbox.alert("You have been signed out")
+  }).catch(function(error) {
+    console.log(error);
+  });
+}

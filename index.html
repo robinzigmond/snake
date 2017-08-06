@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/api.js"></script>
     <script src="js/main.js"></script>
     <title>Snake</title>
@@ -43,7 +44,7 @@
                     <div class="profile-userbuttons">
                         <button id="start" class="btn btn-success btn" onclick="startGame();"><i class="fa fa-gamepad"></i> Start game!</button>
                         <button id="stop" class="btn btn-warning btn" onclick="quit();">Quit</button>
-                        <button id="logout" class="btn btn-info hide" onclick="signOut();"><i class="fa fa-sign-out"></i> Log Out</button>
+                        <button id="logout" class="btn btn-info hide" onclick="signOut();">Log Out</button>
                         
                     </div>
                 </div>
@@ -72,8 +73,6 @@
                         </table>
                       </div>
 </div>
-
-    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootbox.min.js"></script>
     <script src="js/snake.js"></script>
