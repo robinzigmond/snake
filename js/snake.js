@@ -192,10 +192,10 @@ function gameLoop() {
 function highscore(score) {
 firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            if(score > )
-            var score = snake.maxLength -1
+            var score = snake.maxLength -1;
+            document.getElementById("highscore").innerText = score;
             writeUserData(score);
-        } 
+        }
       });
    
 }
