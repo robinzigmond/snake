@@ -71,7 +71,7 @@
 
   function signOut(){
   firebase.auth().signOut().then(function() {
-    bootbox.alert("You have been signed out")
+    bootbox.alert("You have signed out as " + displayName)
   }).catch(function(error) {
     console.log(error);
   });
