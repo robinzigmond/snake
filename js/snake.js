@@ -189,7 +189,7 @@ function gameLoop() {
     }
 }
 
-function highscore() {
-    localStorage.highscore = snake.maxLength -1;
-    document.getElementById("highscore").innerText = localStorage.highscore;
+function highscore(score) {
+    setHighscore();
+    writeUserData(score);
 }

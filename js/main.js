@@ -10,15 +10,11 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
-  var ref = database.ref('scores');
+  var ref = database.ref('snake/scores');
   var user;
   var displayName;
   var photoURL;
   var uid;
-
-var data = {
-    name: displayName
-};
 
   var provider = new firebase.auth.GoogleAuthProvider();
   
@@ -70,6 +66,7 @@ var data = {
             $("#logout").removeClass("hide");
             $("#highscoreText").removeClass("hide");
             $("#highscore").removeClass("hide");
+            setHighscore();
         } else {            
             $("#login").show();
             $("#logout").addClass("hide");
@@ -85,4 +82,12 @@ var data = {
   }).catch(function(error) {
     console.log(error);
   });
+}
+function writeUserData(score) {
+  firebase.database().ref('snake/scores' + uid).set({
+    username: displayName,
+    userId: uid,
+    score: localStorage.getItem('highscore')
+  });
+  localStorage.highscore = snake.maxLength -1;
 }
