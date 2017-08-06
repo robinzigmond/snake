@@ -190,6 +190,5 @@ function gameLoop() {
 }
 
 function highscore(score) {
-    setHighscore();
     writeUserData(score);
 }
