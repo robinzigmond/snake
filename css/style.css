@@ -115,3 +115,10 @@
   .fa {
     color: #029acf;
   }
+
+  .fa-google-plus, .fa-sign-out {
+    color:#dd4b39
+  }
+  .fa-gamepad {
+    color: #fff;
+  }

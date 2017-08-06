@@ -16,7 +16,9 @@
   var photoURL;
   var uid;
 
-
+var data = {
+    name: displayName
+};
 
   var provider = new firebase.auth.GoogleAuthProvider();
   
@@ -43,11 +45,12 @@
   }
 
   function showProfile(){
-    $("#login").hide();
-    $("#logout").removeClass("hide");
-    $("#profile").removeClass("hide");
     $("#playername").replaceWith(user.displayName);
     $("#photo").attr("src", user.photoURL);
+    $("#login").hide();
+    $("#logout").removeClass("hide");
+    $("#higscoreText").remove();
+    $("#highscore").remove();
   }
 
   $(document).ready(function(){
@@ -61,13 +64,17 @@
             uid = user.uid;
             var providerData = user.providerData;
             var token = firebase.auth().currentUser.uid;
-            $("#profile").removeClass("hide");
             $("#playername").replaceWith(user.displayName);
             $("#photo").attr("src", user.photoURL);
-            $("#login").hide();
+            $("#login").remove();
             $("#logout").removeClass("hide");
-        } else {
-          console.log('not logged in');
+            $("#higscoreText").show();
+            $("#highscore").show();
+        } else {            
+            $("#login").show();
+            $("#logout").addClass("hide");
+            $("#higscoreText").remove();
+            $("#highscore").remove();
         }
       });
   });

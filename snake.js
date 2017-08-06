@@ -160,13 +160,7 @@ function startGame() {
 
 
 function quit() {
-    debugger;
-    var data = {
-        userId = user.uid,
-        name: displayName,
-        score: snake.maxLength - 1
-    };
-    ref.push(data);
+    console.log("Button Pressed")
     running = false;
     foodRequired = true;
     foodPosition = {x: undefined, y: undefined};

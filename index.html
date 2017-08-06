@@ -21,10 +21,9 @@
     </div>
     <div class="col-md-6 col-xs-offset-1">
         <canvas id="canvas" width="1000" height="500"></canvas>
-        <button id="login" class="btn btn-warning btn-lg text-center" onclick="signIn();"><i class="fa fa-google-plus"></i>  Sign In to Play</button>
     </div>
     <div class="col-xs-offset-2 col-md-2">
-            <div class="profile-sidebar hide" id="profile">
+            <div class="profile-sidebar" id="profile">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
                         <img src="img/player.png" class="img-responsive" alt="" id="photo">
@@ -33,19 +32,20 @@
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            <p id="playername">Marcus Doe</p>
+                            <p id="playername">Player 1</p>
                         </div>
                         <div class="profile-usertitle-job">
                                 <h3>Score: <span id="score">0</span></h3>
+                                <h3 id="higscoreText">Your Highscore: <span id="highscore">0</span></h3>
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                        <button id="start" class="btn btn-success btn" onclick="startGame();"><i class="fa fa-gamepad"></i> Start game!</button>
-                        <button id="stop" class="btn btn-warning btn" onclick="quit();">Quit</button>
-                        <button id="logout" class="btn btn-info hide" onclick="signOut();">Log Out</button>
-                        
+                        <button id="start" class="btn btn-success" onclick="startGame();">Start game!</button>
+                        <button id="stop" class="btn btn-warning" onclick="quit();">Stop</button>
+                        <button id="logout" class="btn btn-default hide" onclick="signOut();"><i class="fa fa-sign-out"></i> Log Out</button>
+                        <button id="login" class="btn btn-default" onclick="signIn();"><i class="fa fa-google-plus"></i> Sign In</button>
                     </div>
                 </div>
                 <div class="panel panel-info">
