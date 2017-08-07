@@ -189,7 +189,13 @@ function gameLoop() {
     }
 }
 
-function highscore() {
-    localStorage.highscore = snake.maxLength -1;
-    document.getElementById("highscore").innerText = localStorage.highscore;
+function highscore(score) {
+firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var score = snake.maxLength -1;
+            document.getElementById("highscore").innerText = score;
+            writeUserData(score);
+        }
+      });
+   
 }

@@ -122,3 +122,11 @@
   .fa-gamepad {
     color: #fff;
   }
+  @media only screen and (min-width: 1334px) {
+    .col-lg-offset-4 {
+      margin-left: 33.33333333%;
+  }
+  .col-lg-2 {
+      width: 16.66666667%;
+  }
+}

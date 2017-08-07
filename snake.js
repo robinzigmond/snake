@@ -76,7 +76,7 @@ function moveSnake() {
         snake.segments.push(newSegment);
         
         // increase maxLength (and, indirectly, the score!) if the snake got to the food
-        var front = snake.segments[snake.segments.length-1];
+        var front = snake.segments[snake.segments.length-1]; // this is the same as line 71 might want to change ?
         if (front.xPos==foodPosition.x && front.yPos==foodPosition.y) {
             foodRequired = true;
             snake.maxLength++;
@@ -90,12 +90,16 @@ function moveSnake() {
 
         // end the game if front of snake hits wall, or any of its own segments!
         if (front.xPos>=widthInBlocks || front.yPos>=heightInBlocks || front.xPos<0 || front.yPos<0) {
+            highscore();
             quit();
             bootbox.alert("Oops, you hit the wall! Better luck next time.");
         }
         else {snake.segments.forEach(function(segment, index) {
                 // obviously don't penalise the player for the front of the snake hitting itself!
                 if (front != segment && front.xPos == segment.xPos && front.yPos == segment.yPos) {
+                    highscore();
+                    // localStorage.highscore = snake.maxLength -1;
+                    // document.getElementById("highscore").innerText = localStorage.highscore;
                     quit();
                     bootbox.alert("Your snake got too long - or maybe you were too slow. Either way, it hit itself! Better luck next time.");
                 }
@@ -160,7 +164,9 @@ function startGame() {
 
 
 function quit() {
-    console.log("Button Pressed")
+    if (snake.maxLength > localStorage.highscore){
+    highscore();
+}
     running = false;
     foodRequired = true;
     foodPosition = {x: undefined, y: undefined};
@@ -181,4 +187,8 @@ function gameLoop() {
             requestAnimationFrame(gameLoop);
         }
     }
+}
+
+function highscore(score) {
+    writeUserData(score);
 }
